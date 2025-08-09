@@ -29,21 +29,20 @@ class Creature:
         damage = self.attacks[atk_name]
         print(f"{self.name} uses {atk_name}!")
         opponent.take_damage(damage)
-        await asyncio.sleep(0)  # yield control
+        await asyncio.sleep(0)
 
     async def ai_turn(self, opponent):
         print(f"\n--- {self.name}'s Turn ---")
         atk_name, damage = random.choice(list(self.attacks.items()))
         print(f"{self.name} uses {atk_name}!")
         opponent.take_damage(damage)
-        await asyncio.sleep(0)  # yield control
+        await asyncio.sleep(0)
 
 
 async def battle(player, enemy):
     print(f"A wild {enemy.name} appears!")
     await asyncio.sleep(0)
 
-    # Create coroutine generators
     player_turn = player.player_turn(enemy)
     ai_turn = enemy.ai_turn(player)
 
